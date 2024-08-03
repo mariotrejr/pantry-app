@@ -1,95 +1,93 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import { Box, Stack, Typography, Paper, Container, CssBaseline } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const items = ["Potato", "Tomato", "Vegetable", "Fruit", "Meat", "Fish", "Cheese", "Butter", "Milk", "Eggs"];
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#3f51b5',
+    },
+    background: {
+      default: '#f4f6f8',
+    },
+  },
+  typography: {
+    h3: {
+      fontWeight: 700,
+    },
+  },
+});
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Box
+          width="100%"
+          minHeight="100vh"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          bgcolor="background.default"
+          padding={2}
+        >
+          <Paper
+            elevation={3}
+            sx={{
+              width: '100%',
+              maxWidth: 800,
+              padding: 2,
+              marginBottom: 4,
+              textAlign: 'center',
+              backgroundColor: '#fff',
+            }}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            <Typography variant="h4" component="h1" gutterBottom>
+              Pantry Tracker
+            </Typography>
+            <Typography variant="h6" component="h2" color="textSecondary">
+              Keep track of your pantry items easily
+            </Typography>
+          </Paper>
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: 800,
+              height: 400, // Set the height to make the content scrollable
+              overflowY: 'auto', // Enable vertical scrolling
+              padding: 1,
+            }}
+          >
+            <Stack
+              spacing={2}
+              justifyContent="center"
+              alignItems="center"
+            >
+              {items.map((item) => (
+                <Paper
+                  key={item}
+                  elevation={1}
+                  sx={{
+                    width: '100%',
+                    height: '100px',
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Typography variant="h3">{item}</Typography>
+                </Paper>
+              ))}
+            </Stack>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
